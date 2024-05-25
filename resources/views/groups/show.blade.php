@@ -1,17 +1,17 @@
-<!DOCTYPE html>
-<h1>Информация о группе "{{ $group->title }}"</h1>
+@extends('layouts.app')
 
-<p>Название: {{ $group->title }}</p>
-<p>Дата начала обучения: {{ $group->start_from }}</p>
-<p>Статус: {{ $group->is_active ? 'Активная' : 'Неактивная' }}</p>
-
-<a href="{{ route('groups.createStudent', $group) }}">Добавить студента</a>
-
-<h2>Список студентов</h2>
+@section('content')
+<h1>{{ $group->title }}</h1>
+<p>Дата начала: {{ $group->start_from }}</p>
+<p>Активна: {{ $group->is_active ? 'Да' : 'Нет' }}</p>
+<a href="{{ route('groups.students.create', $group) }}" class="btn btn-primary">Добавить студента</a>
+<h2>Студенты</h2>
 <ul>
-    @foreach($students as $student)
-    <li>
-        <a href="{{ route('students.show', $student) }}">{{ $student->surname }} {{ $student->name }}</a>
-    </li>
+    @foreach ($group->students as $student)
+        <li>
+            <a href="{{ route('students.show', $student) }}">{{ $student->surname }} {{ $student->name }}</a>
+        </li>
     @endforeach
 </ul>
+<a href="{{ route('groups.index') }}" class="btn btn-secondary">Назад к списку групп</a>
+@endsection

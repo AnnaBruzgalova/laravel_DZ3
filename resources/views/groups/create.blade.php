@@ -1,13 +1,21 @@
-<!DOCTYPE html>
-<h1>Создание новой группы</h1>
+@extends('layouts.app')
 
-<form action="{{ route('groups.store') }}" method="post">
+@section('content')
+<h1>Создать новую группу</h1>
+<form method="POST" action="{{ route('groups.store') }}">
     @csrf
-    <label for="title">Название группы:</label><br>
-    <input type="text" id="title" name="title"><br>
-    <label for="start_from">Дата начала обучения:</label><br>
-    <input type="date" id="start_from" name="start_from"><br>
-    <label for="is_active">Начало обучения:</label><br>
-    <input type="checkbox" id="is_active" name="is_active" value="1"><br>
-    <button type="submit">Создать</button>
+    <div class="form-group">
+        <label for="title">Название группы</label>
+        <input type="text" class="form-control" id="title" name="title" required>
+    </div>
+    <div class="form-group">
+        <label for="start_from">Дата начала обучения</label>
+        <input type="date" class="form-control" id="start_from" name="start_from" required>
+    </div>
+    <div class="form-group">
+        <label for="is_active">Активна</label>
+        <input type="checkbox" id="is_active" name="is_active">
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
 </form>
+@endsection

@@ -4,27 +4,21 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateGroupsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
-            $table->string('title');   // Название группы
-            $table->date('start_from'); // Дата начала обучения
-            $table->boolean('is_active')->default(true);  // Начала ли группа своё обучение
+            $table->string('title');
+            $table->date('start_from');
+            $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('groups');
     }
-};
+}
